@@ -221,7 +221,26 @@ header.scrolled {
 .section-sub {
   font-size: 1.05rem; color: var(--clr-text-secondary);
   max-width: 560px; line-height: 1.75;
+  margin-inline: auto;
 }
+
+/* ============================================================
+   SECTION INTRO — centred heading block used above all grids
+   ============================================================ */
+.section-intro {
+  text-align: center;
+}
+/* flanking lines on the label when centred */
+.section-intro .section-label::after {
+  content: ''; display: block; width: 20px; height: 2px;
+  background: var(--clr-accent-primary); flex-shrink: 0;
+}
+/* left-aligned variant (hero, page-hero) keeps original left rule only */
+.section-intro--left {
+  text-align: left;
+}
+.section-intro--left .section-label::after { display: none; }
+.section-intro--left .section-sub { margin-inline: 0; }
 
 /* ============================================================
    REVEAL ANIMATIONS
@@ -361,11 +380,14 @@ header.scrolled {
   font-size: 1.5rem; margin-bottom: 1.1rem; transition: background 0.3s;
 }
 .glass-card:hover .service-card-icon { background: rgba(74, 107, 30, 0.2); }
+.services-grid .glass-card {
+  display: flex; flex-direction: column;
+}
 .service-card h3 {
   font-family: var(--ff-display); font-size: 1.05rem; font-weight: 700;
   color: var(--clr-text-primary); margin-bottom: 0.45rem;
 }
-.service-card p { font-size: 0.88rem; color: var(--clr-text-secondary); line-height: 1.7; }
+.service-card p { font-size: 0.88rem; color: var(--clr-text-secondary); line-height: 1.7; flex: 1; }
 
 /* ============================================================
    PHOTO GALLERY
@@ -436,11 +458,14 @@ header.scrolled {
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 1.25rem; margin-top: 3rem;
 }
+.why-grid .glass-card {
+  display: flex; flex-direction: column;
+}
 .why-card h3 {
   font-family: var(--ff-display); font-weight: 700; font-size: 1.05rem;
   color: var(--clr-text-primary); margin-bottom: 0.45rem;
 }
-.why-card p { font-size: 0.88rem; line-height: 1.7; }
+.why-card p { font-size: 0.88rem; line-height: 1.7; flex: 1; }
 .why-icon {
   width: 48px; height: 48px;
   background: rgba(192, 92, 30, 0.1); border-radius: 12px;
@@ -559,7 +584,8 @@ header.scrolled {
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: 1.25rem; margin-top: 3rem; counter-reset: step;
 }
-.process-step { position: relative; counter-increment: step; }
+.process-step { position: relative; counter-increment: step; display: flex; flex-direction: column; }
+.process-step p { flex: 1; }
 .process-step-num {
   font-family: var(--ff-body); font-size: 0.7rem; font-weight: 700;
   letter-spacing: 0.12em; color: var(--clr-accent-primary);

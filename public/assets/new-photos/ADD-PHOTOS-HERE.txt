@@ -1,0 +1,10 @@
+DROP NEW PROJECT PHOTOS IN THIS FOLDER
+=======================================
+
+1. Add your .jpeg / .jpg / .png photos here
+2. Use simple names — no spaces, e.g.:  kitchen-blue.jpeg  wardrobe-grey.jpeg
+3. Tell me what each photo shows (kitchen, bathroom, wardrobe, exterior, etc.)
+4. I will add them to the website gallery and service pages
+
+Current photos already on the website are in:
+  public/assets/projects/
