@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us | Monoline Home Renovation & Maintenance</title>
+  <meta name="description" content="Get a free quote from Monoline Home Renovation & Maintenance. Call +27 79 914 3050 or send a message — we'll get back to you promptly." />
+
+  <!-- Open Graph -->
+  <meta property="og:title"       content="Contact Us | Monoline Home Renovation & Maintenance" />
+  <meta property="og:description" content="Get a free quote for your renovation project. Call, email or fill in the form and Jackson will get back to you." />
+  <meta property="og:image"       content="/assets/logo.png" />
+  <meta property="og:url"         content="https://yourdomain.co.za/contact/" />
+  <meta property="og:type"        content="website" />
+
+  <link rel="canonical" href="https://yourdomain.co.za/contact/" />
+  <link rel="icon" type="image/png" href="/assets/logo.png" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- ── HEADER ── -->
+  <header>
+    <nav class="nav-inner">
+      <a href="/" class="nav-logo">
+        <img src="/assets/logo.png" alt="Monoline Logo" />
+        <div class="nav-logo-text">
+          Monoline
+          <span>Home Renovation &amp; Maintenance</span>
+        </div>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-list" id="navList">
+        <li><a href="/">Home</a></li>
+        <li><a href="/renovations/">Renovations</a></li>
+        <li><a href="/contact/" class="nav-cta">Get a Quote</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ── PAGE CONTENT ── -->
+  <main id="swup">
+
+    <!-- PAGE HERO -->
+    <section class="page-hero section">
+      <div class="container">
+        <p class="section-label reveal">Get In Touch</p>
+        <h1 class="hero-title reveal">
+          Let's Talk About<br>Your <em>Project</em>
+        </h1>
+        <p class="reveal">
+          Fill in the form below or call us directly. We offer free consultations
+          and on-site quotes — no obligation.
+        </p>
+      </div>
+    </section>
+
+    <!-- CONTACT LAYOUT -->
+    <section class="section" style="padding-top: 0;">
+      <div class="container">
+        <div class="contact-layout">
+
+          <!-- LEFT — Info -->
+          <div class="contact-info reveal">
+            <h2 class="contact-info-title">Contact Details</h2>
+
+            <div class="contact-detail">
+              <div class="contact-detail-icon">📞</div>
+              <div>
+                <h4>Phone</h4>
+                <p><a href="tel:+27799143050">+27 79 914 3050</a></p>
+                <p style="font-size:0.8rem; margin-top:0.2rem;">Mon–Fri 7:00–18:00 · Sat 8:00–14:00</p>
+              </div>
+            </div>
+
+            <div class="contact-detail">
+              <div class="contact-detail-icon">✉️</div>
+              <div>
+                <h4>Email</h4>
+                <p><a href="mailto:seopaJacksonJackson@gmail.com">seopaJacksonJackson@gmail.com</a></p>
+                <p style="font-size:0.8rem; margin-top:0.2rem;">We reply within 24 hours</p>
+              </div>
+            </div>
+
+            <div class="contact-detail">
+              <div class="contact-detail-icon">💬</div>
+              <div>
+                <h4>WhatsApp</h4>
+                <p><a href="https://wa.me/27799143050">Message us on WhatsApp</a></p>
+                <p style="font-size:0.8rem; margin-top:0.2rem;">Quickest way to reach us</p>
+              </div>
+            </div>
+
+            <div class="contact-detail">
+              <div class="contact-detail-icon">📍</div>
+              <div>
+                <h4>Service Area</h4>
+                <p>South Africa</p>
+                <p style="font-size:0.8rem; margin-top:0.2rem;">Available nationwide for large projects</p>
+              </div>
+            </div>
+
+            <!-- Quick CTA card -->
+            <div class="glass-card" style="margin-top:2rem; padding:1.5rem;">
+              <p style="font-size:0.88rem; color:var(--clr-text-secondary); margin-bottom:1rem;">
+                Prefer to call? Jackson answers directly.
+              </p>
+              <a href="tel:+27799143050" class="btn-primary" style="width:100%; justify-content:center;">
+                📞 Call Now
+              </a>
+            </div>
+          </div>
+
+          <!-- RIGHT — Form -->
+          <div class="glass-card contact-form-card reveal">
+            <p class="section-label" style="margin-bottom:0.5rem;">Free Quote Request</p>
+            <h2 class="section-title" style="font-size:1.6rem; margin-bottom:1.75rem;">
+              Tell Us About<br><em>Your Project</em>
+            </h2>
+
+            <!--
+              Replace YOUR_FORM_ID below with your Formspree form ID.
+              Sign up free at https://formspree.io
+            -->
+            <form
+              id="contactForm"
+              action="https://formspree.io/f/YOUR_FORM_ID"
+              method="POST"
+              class="contact-form"
+            >
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="firstName">First Name *</label>
+                  <input type="text" id="firstName" name="firstName" placeholder="Jackson" required />
+                </div>
+                <div class="form-group">
+                  <label for="lastName">Last Name *</label>
+                  <input type="text" id="lastName" name="lastName" placeholder="Seopa" required />
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="email">Email Address *</label>
+                  <input type="email" id="email" name="email" placeholder="you@example.com" required />
+                </div>
+                <div class="form-group">
+                  <label for="phone">Phone Number</label>
+                  <input type="tel" id="phone" name="phone" placeholder="+27 79 000 0000" />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="service">Service Required *</label>
+                <select id="service" name="service" required>
+                  <option value="" disabled selected>Select a service…</option>
+                  <option value="Home Renovation">Home Renovation</option>
+                  <option value="Roofing & Waterproofing">Roofing &amp; Waterproofing</option>
+                  <option value="Carpentry & Decking">Carpentry &amp; Decking</option>
+                  <option value="Doors & Glazing">Doors &amp; Glazing</option>
+                  <option value="Flooring">Flooring</option>
+                  <option value="Maintenance & Repairs">Maintenance &amp; Repairs</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="message">Project Details *</label>
+                <textarea
+                  id="message"
+                  name="message"
+                  placeholder="Describe your project — what needs to be done, approximate size, location, and any specific requirements…"
+                  required
+                ></textarea>
+              </div>
+
+              <div id="formStatus" class="form-status" aria-live="polite"></div>
+
+              <button type="submit" class="btn-primary" style="width:100%; justify-content:center; font-size:1rem;">
+                Send Message →
+              </button>
+
+              <p style="font-size:0.75rem; color:var(--clr-text-tertiary); text-align:center; margin-top:-0.25rem;">
+                We'll get back to you within 24 hours.
+              </p>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <div class="footer-logo">
+              <img src="/assets/logo.png" alt="Monoline Logo" />
+              <div class="footer-logo-text">
+                Monoline
+                <span>Home Renovation &amp; Maintenance</span>
+              </div>
+            </div>
+            <p>Professional home renovations and construction services. From minor repairs to full builds — reliable workmanship you can trust.</p>
+            <div class="footer-social">
+              <a href="#" class="social-link" aria-label="Facebook">f</a>
+              <a href="https://wa.me/27799143050" class="social-link" aria-label="WhatsApp">W</a>
+            </div>
+          </div>
+          <div class="footer-col">
+            <h4>Navigation</h4>
+            <ul>
+              <li><a href="/">Home</a></li>
+              <li><a href="/renovations/">Renovations &amp; Construction</a></li>
+              <li><a href="/contact/">Contact Us</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Contact</h4>
+            <ul>
+              <li><a href="tel:+27799143050">+27 79 914 3050</a></li>
+              <li><a href="mailto:seopaJacksonJackson@gmail.com">seopaJacksonJackson@gmail.com</a></li>
+              <li><span>South Africa</span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2026 Monoline Home Renovation &amp; Maintenance. All rights reserved.</p>
+          <p>Built by <a href="#">Jackson Seopa</a></p>
+        </div>
+      </div>
+    </footer>
+
+  </main><!-- /#swup -->
+
+  <script type="module" src="/src/js/main.js"></script>
+</body>
+</html>
