@@ -1,5 +1,4 @@
 import '../css/style.css'
-import * as THREE from 'three'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Swup from 'swup'
@@ -7,88 +6,6 @@ import SwupPreloadPlugin from '@swup/preload-plugin'
 import SwupBodyClassPlugin from '@swup/body-class-plugin'
 
 gsap.registerPlugin(ScrollTrigger)
-
-/* ── THREE.JS SCENE (init once, never re-created) ─────────── */
-const canvas = document.getElementById('bg-canvas')
-const renderer = new THREE.WebGLRenderer({ canvas, antialias: false, alpha: true })
-renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
-renderer.setSize(window.innerWidth, window.innerHeight)
-
-const scene  = new THREE.Scene()
-const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 150)
-camera.position.z = 35
-
-// Particle field — olive green, muted orange, deep blue tones
-const COUNT = 1200
-const positions = new Float32Array(COUNT * 3)
-const colors    = new Float32Array(COUNT * 3)
-const sizes     = new Float32Array(COUNT)
-
-const palette = [
-  new THREE.Color(0x7fa232), // olive green
-  new THREE.Color(0x5a7520), // darker olive
-  new THREE.Color(0xf97316), // brand orange
-  new THREE.Color(0x3a5f8a), // navy blue
-  new THREE.Color(0x243a52), // dark navy
-]
-
-for (let i = 0; i < COUNT; i++) {
-  positions[i * 3]     = (Math.random() - 0.5) * 100
-  positions[i * 3 + 1] = (Math.random() - 0.5) * 100
-  positions[i * 3 + 2] = (Math.random() - 0.5) * 100
-  const c = palette[Math.floor(Math.random() * palette.length)]
-  colors[i * 3]     = c.r
-  colors[i * 3 + 1] = c.g
-  colors[i * 3 + 2] = c.b
-  sizes[i] = Math.random() * 0.8 + 0.1
-}
-
-const geo = new THREE.BufferGeometry()
-geo.setAttribute('position', new THREE.BufferAttribute(positions, 3))
-geo.setAttribute('color',    new THREE.BufferAttribute(colors, 3))
-
-const mat = new THREE.PointsMaterial({
-  size: 0.2,
-  sizeAttenuation: true,
-  vertexColors: true,
-  transparent: true,
-  opacity: 0.65,
-})
-
-const particles = new THREE.Points(geo, mat)
-scene.add(particles)
-
-// Mouse parallax
-let mouseX = 0, mouseY = 0
-window.addEventListener('mousemove', e => {
-  mouseX = (e.clientX / window.innerWidth  - 0.5) * 0.6
-  mouseY = (e.clientY / window.innerHeight - 0.5) * 0.6
-})
-
-// Scroll zoom
-let scrollProgress = 0
-window.addEventListener('scroll', () => {
-  const maxScroll = document.body.scrollHeight - window.innerHeight
-  scrollProgress = maxScroll > 0 ? window.scrollY / maxScroll : 0
-})
-
-// Resize
-window.addEventListener('resize', () => {
-  camera.aspect = window.innerWidth / window.innerHeight
-  camera.updateProjectionMatrix()
-  renderer.setSize(window.innerWidth, window.innerHeight)
-})
-
-// Animate
-;(function animate() {
-  requestAnimationFrame(animate)
-  particles.rotation.y += 0.00045
-  particles.rotation.x += 0.00018
-  camera.position.x += (mouseX - camera.position.x) * 0.025
-  camera.position.y += (-mouseY - camera.position.y) * 0.025
-  camera.position.z = 35 - scrollProgress * 10
-  renderer.render(scene, camera)
-}())
 
 /* ── CONTENT INIT (called on load + every Swup page replace) ── */
 function initContent() {
@@ -117,7 +34,6 @@ function initContent() {
   const navToggle = document.getElementById('navToggle')
   const navList   = document.getElementById('navList')
   if (navToggle && navList) {
-    // Clone to remove stale listeners
     const fresh = navToggle.cloneNode(true)
     navToggle.replaceWith(fresh)
     fresh.addEventListener('click', () => {
@@ -130,6 +46,15 @@ function initContent() {
         navList.classList.remove('is-open')
       })
     })
+  }
+
+  // ── Hero parallax
+  const heroImg = document.querySelector('.hero-photo-col img')
+  if (heroImg) {
+    const onScroll = () => {
+      heroImg.style.transform = `translateY(${window.scrollY * 0.28}px)`
+    }
+    window.addEventListener('scroll', onScroll, { passive: true })
   }
 
   // ── Hero entrance animation
