@@ -149,6 +149,43 @@ function initContent() {
     )
   })
 
+  // ── Lightbox
+  const lbOverlay = document.getElementById('lbOverlay')
+  const lbImg     = document.getElementById('lbImg')
+  const lbLabel   = document.getElementById('lbLabel')
+  const lbTag     = document.getElementById('lbTag')
+  const lbClose   = document.getElementById('lbClose')
+
+  if (lbOverlay) {
+    const openLb = (src, alt, label, tag) => {
+      lbImg.src = src
+      lbImg.alt = alt
+      lbLabel.textContent = label
+      lbTag.textContent   = tag
+      lbOverlay.classList.add('is-open')
+      lbOverlay.setAttribute('aria-hidden', 'false')
+      document.body.style.overflow = 'hidden'
+    }
+    const closeLb = () => {
+      lbOverlay.classList.remove('is-open')
+      lbOverlay.setAttribute('aria-hidden', 'true')
+      document.body.style.overflow = ''
+    }
+
+    document.querySelectorAll('.gallery-masonry-item').forEach(item => {
+      item.addEventListener('click', () => {
+        const img   = item.querySelector('img')
+        const label = item.querySelector('.gallery-label')?.textContent || ''
+        const tag   = item.querySelector('.gallery-tag')?.textContent   || ''
+        openLb(img.src, img.alt, label, tag)
+      })
+    })
+
+    lbClose.addEventListener('click', closeLb)
+    lbOverlay.addEventListener('click', e => { if (e.target === lbOverlay) closeLb() })
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLb() })
+  }
+
   // ── Contact form async submit
   const form   = document.getElementById('contactForm')
   const status = document.getElementById('formStatus')
