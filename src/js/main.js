@@ -149,24 +149,6 @@ function initContent() {
     )
   })
 
-  // ── Stats count-up
-  document.querySelectorAll('.stat-number[data-count]').forEach(el => {
-    const target = parseInt(el.dataset.count, 10)
-    ScrollTrigger.create({
-      trigger: el,
-      start: 'top 85%',
-      once: true,
-      onEnter: () => {
-        gsap.fromTo(
-          { val: 0 },
-          { val: target, duration: 1.6, ease: 'power2.out',
-            onUpdate() { el.textContent = Math.round(this.targets()[0].val) + (el.dataset.suffix || '') },
-          }
-        )
-      },
-    })
-  })
-
   // ── Contact form async submit
   const form   = document.getElementById('contactForm')
   const status = document.getElementById('formStatus')
