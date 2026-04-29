@@ -105,6 +105,37 @@ function initContent() {
     )
   })
 
+  // ── Cinematic sections — parallax scroll on full-bleed images
+  gsap.utils.toArray('.cinematic-single img, .cinematic-pair-item img').forEach(img => {
+    gsap.fromTo(img,
+      { y: '0%' },
+      {
+        y: '-14%',
+        ease: 'none',
+        scrollTrigger: {
+          trigger: img.closest('.cinematic-single, .cinematic-pair-item'),
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 0.8,
+        },
+      }
+    )
+  })
+
+  // ── Cinematic sections — fade in on scroll
+  gsap.utils.toArray('.cinematic-single, .cinematic-pair-item').forEach((el, i) => {
+    gsap.fromTo(el,
+      { opacity: 0 },
+      {
+        opacity: 1,
+        duration: 1.1,
+        ease: 'power2.out',
+        scrollTrigger: { trigger: el, start: 'top 90%', once: true },
+        delay: i * 0.12,
+      }
+    )
+  })
+
   // ── Masonry gallery — each item animates as it enters the viewport
   gsap.utils.toArray('.gallery-masonry-item').forEach((item, i) => {
     gsap.fromTo(item,
