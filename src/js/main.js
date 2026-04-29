@@ -89,7 +89,7 @@ function initContent() {
     )
   })
 
-  // ── .reveal-group  (stagger children)
+  // ── .reveal-group  (stagger children — cards, steps, stats)
   gsap.utils.toArray('.reveal-group').forEach(group => {
     const items = group.querySelectorAll('.glass-card, .process-step, .stat-item')
     if (!items.length) return
@@ -101,6 +101,19 @@ function initContent() {
         ease: 'power3.out',
         stagger: 0.11,
         scrollTrigger: { trigger: group, start: 'top 85%', once: true },
+      }
+    )
+  })
+
+  // ── Masonry gallery — each item animates as it enters the viewport
+  gsap.utils.toArray('.gallery-masonry-item').forEach((item, i) => {
+    gsap.fromTo(item,
+      { opacity: 0, y: 32, scale: 0.98 },
+      {
+        opacity: 1, y: 0, scale: 1,
+        duration: 0.7,
+        ease: 'power3.out',
+        scrollTrigger: { trigger: item, start: 'top 94%', once: true },
       }
     )
   })

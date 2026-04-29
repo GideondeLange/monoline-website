@@ -390,60 +390,74 @@ header.scrolled {
 .service-card p { font-size: 0.88rem; color: var(--clr-text-secondary); line-height: 1.7; flex: 1; }
 
 /* ============================================================
-   PHOTO GALLERY
+   PHOTO GALLERY — MASONRY
    ============================================================ */
-.gallery-section { padding-bottom: 0; }
-.gallery-section .container { margin-bottom: 2.5rem; }
-
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--gap-sm);
+.gallery-section {
+  padding-bottom: 0;
+}
+.gallery-section .container {
+  margin-bottom: 2.5rem;
 }
 
-.gallery-item {
-  position: relative; overflow: hidden;
-  aspect-ratio: 4/3; cursor: pointer;
-  background: var(--clr-bg-surface);
+/* Masonry columns — CSS-only, handles any aspect ratio naturally */
+.gallery-masonry {
+  columns: 3;
+  column-gap: 4px;
 }
-.gallery-item.gallery-featured {
-  grid-column: span 2;
-  aspect-ratio: 16/9;
-}
-.gallery-item img {
-  width: 100%; height: 100%; object-fit: cover; display: block;
-  transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
-}
-.gallery-item:hover img { transform: scale(1.06); }
 
+.gallery-masonry-item {
+  break-inside: avoid;
+  margin-bottom: 4px;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  opacity: 0;                   /* GSAP animates to 1 on scroll */
+}
+
+.gallery-masonry-item img {
+  width: 100%; display: block;
+  transition: transform 0.75s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.gallery-masonry-item:hover img { transform: scale(1.06); }
+
+/* Hover overlay — gradient from bottom */
 .gallery-overlay {
   position: absolute; inset: 0;
-  background: linear-gradient(to top, rgba(26,20,10,0.78) 0%, rgba(26,20,10,0.08) 45%, transparent 70%);
+  background: linear-gradient(
+    to top,
+    rgba(26, 20, 10, 0.82) 0%,
+    rgba(26, 20, 10, 0.08) 40%,
+    transparent 65%
+  );
   opacity: 0; transition: opacity 0.4s ease;
 }
-.gallery-item:hover .gallery-overlay { opacity: 1; }
+.gallery-masonry-item:hover .gallery-overlay { opacity: 1; }
 
+/* Label slides up from bottom on hover */
 .gallery-label {
-  position: absolute; bottom: 1.1rem; left: 1.25rem;
+  position: absolute; bottom: 1rem; left: 1.1rem;
   color: #fff; font-family: var(--ff-display); font-weight: 600;
-  font-size: 0.88rem; letter-spacing: 0.04em;
-  transform: translateY(8px); opacity: 0;
-  transition: transform 0.4s ease, opacity 0.4s ease;
+  font-size: 0.85rem; letter-spacing: 0.03em;
+  transform: translateY(10px); opacity: 0;
+  transition: transform 0.38s ease, opacity 0.38s ease;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.4);
 }
-.gallery-item:hover .gallery-label { transform: translateY(0); opacity: 1; }
+.gallery-masonry-item:hover .gallery-label { transform: translateY(0); opacity: 1; }
 
+/* Category pill — drops in from top on hover */
 .gallery-tag {
-  position: absolute; top: 1rem; right: 1rem;
-  background: rgba(74, 107, 30, 0.85); backdrop-filter: blur(8px);
-  color: #fff; font-size: 0.68rem; font-weight: 700;
+  position: absolute; top: 0.9rem; right: 0.9rem;
+  background: rgba(74, 107, 30, 0.88);
+  color: #fff; font-size: 0.65rem; font-weight: 700;
   letter-spacing: 0.1em; text-transform: uppercase;
-  padding: 0.3rem 0.75rem; border-radius: 100px;
+  padding: 0.28rem 0.7rem; border-radius: 100px;
   opacity: 0; transform: translateY(-6px);
-  transition: opacity 0.4s ease, transform 0.4s ease;
+  transition: opacity 0.38s ease, transform 0.38s ease;
 }
-.gallery-item:hover .gallery-tag { opacity: 1; transform: translateY(0); }
+.gallery-masonry-item:hover .gallery-tag { opacity: 1; transform: translateY(0); }
 
-.gallery-cta { padding-block: 3rem; text-align: center; }
+/* CTA below the masonry grid */
+.gallery-cta { padding-block: 3.5rem; text-align: center; }
 
 /* ============================================================
    WHY CHOOSE US
@@ -751,8 +765,7 @@ footer {
   }
   .hero-content { max-width: 100%; }
 
-  .gallery-grid { grid-template-columns: repeat(2, 1fr); }
-  .gallery-item.gallery-featured { grid-column: span 2; aspect-ratio: 16/9; }
+  .gallery-masonry { columns: 2; }
 
   .contact-layout { grid-template-columns: 1fr; }
 
@@ -788,8 +801,7 @@ footer {
   .hero-btns .btn-primary,
   .hero-btns .btn-outline { width: 100%; justify-content: center; }
 
-  .gallery-grid { grid-template-columns: repeat(2, 1fr); }
-  .gallery-item.gallery-featured { grid-column: span 2; aspect-ratio: 4/3; }
+  .gallery-masonry { columns: 2; }
 
   .stats-row { grid-template-columns: 1fr; gap: 0; }
 
@@ -811,8 +823,10 @@ footer {
 /* ============================================================
    RESPONSIVE — XS  (≤ 380px)
    ============================================================ */
+@media (max-width: 480px) {
+  .gallery-masonry { columns: 1; }
+}
+
 @media (max-width: 380px) {
-  .gallery-grid { grid-template-columns: 1fr; }
-  .gallery-item.gallery-featured { grid-column: span 1; aspect-ratio: 4/3; }
   .nav-logo-text span { display: none; }
 }
