@@ -537,6 +537,91 @@ header.scrolled {
 .gallery-cta { padding-block: 3.5rem; text-align: center; }
 
 /* ============================================================
+   CINEMATIC SCROLL — full-bleed photo sections (BMW M style)
+   ============================================================ */
+
+/* Single full-width cinematic image */
+.cinematic-single {
+  position: relative;
+  width: 100%;
+  height: 75vh;
+  overflow: hidden;
+  background: #0a0a0a;
+}
+.cinematic-single img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 120%;
+  object-fit: cover;
+  object-position: center 30%;
+  top: -10%;
+  will-change: transform;
+  display: block;
+}
+
+/* Two side-by-side full-bleed images */
+.cinematic-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+  background: #0a0a0a;
+}
+.cinematic-pair-item {
+  position: relative;
+  height: 65vh;
+  overflow: hidden;
+}
+.cinematic-pair-item img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 120%;
+  object-fit: cover;
+  object-position: center;
+  top: -10%;
+  will-change: transform;
+  display: block;
+}
+
+/* Caption overlay — slides up from bottom on hover */
+.cinematic-caption,
+.cinematic-pair-caption {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 2.5rem 2rem 2rem;
+  background: linear-gradient(to top, rgba(0,0,0,0.72) 0%, transparent 100%);
+  transform: translateY(8px);
+  opacity: 0;
+  transition: opacity 0.45s ease, transform 0.45s ease;
+  pointer-events: none;
+}
+.cinematic-single:hover .cinematic-caption,
+.cinematic-pair-item:hover .cinematic-pair-caption {
+  opacity: 1;
+  transform: translateY(0);
+}
+.cinematic-caption p,
+.cinematic-pair-caption p {
+  color: rgba(255,255,255,0.88);
+  font-family: var(--ff-body);
+  font-size: 0.9rem;
+  line-height: 1.55;
+  margin-top: 0.4rem;
+}
+.cinematic-tag {
+  display: inline-block;
+  background: rgba(74, 107, 30, 0.9);
+  color: #fff;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.75rem;
+  border-radius: 100px;
+}
+
+/* ============================================================
    WHY CHOOSE US
    ============================================================ */
 .why-section {
@@ -822,6 +907,8 @@ footer {
    ============================================================ */
 @media (max-width: 1024px) {
   .hero { grid-template-columns: 55% 45%; }
+  .cinematic-single { height: 60vh; }
+  .cinematic-pair-item { height: 55vh; }
 }
 
 /* ============================================================
@@ -843,6 +930,9 @@ footer {
   .hero-content { max-width: 100%; }
 
   .gallery-masonry { columns: 2; }
+
+  .cinematic-pair { grid-template-columns: 1fr 1fr; }
+  .cinematic-pair-item { height: 48vh; }
 
   .contact-layout { grid-template-columns: 1fr; }
 
@@ -879,6 +969,10 @@ footer {
   .hero-btns .btn-outline { width: 100%; justify-content: center; }
 
   .gallery-masonry { columns: 2; }
+
+  .cinematic-single { height: 50vh; }
+  .cinematic-pair { grid-template-columns: 1fr; gap: 4px; }
+  .cinematic-pair-item { height: 55vw; min-height: 260px; }
 
   .stats-row { grid-template-columns: 1fr; gap: 0; }
 
