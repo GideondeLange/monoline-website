@@ -157,14 +157,27 @@ function initContent() {
   const lbClose   = document.getElementById('lbClose')
 
   if (lbOverlay) {
-    const openLb = (src, alt, label, tag) => {
-      lbImg.src = src
-      lbImg.alt = alt
-      lbLabel.textContent = label
-      lbTag.textContent   = tag
+    const revealLb = () => {
       lbOverlay.classList.add('is-open')
       lbOverlay.setAttribute('aria-hidden', 'false')
       document.body.style.overflow = 'hidden'
+    }
+    const openLb = (src, alt, label, tag) => {
+      lbImg.alt           = alt
+      lbLabel.textContent = label
+      lbTag.textContent   = tag
+      // If same src already decoded — show instantly in next paint
+      if (lbImg.src === src && lbImg.complete && lbImg.naturalWidth > 0) {
+        requestAnimationFrame(revealLb)
+      } else {
+        lbImg.onload  = () => requestAnimationFrame(revealLb)
+        lbImg.onerror = () => requestAnimationFrame(revealLb) // show even if error
+        lbImg.src = src
+        // Fallback: if image was already cached, onload may not fire again
+        requestAnimationFrame(() => {
+          if (lbImg.complete) revealLb()
+        })
+      }
     }
     const closeLb = () => {
       lbOverlay.classList.remove('is-open')

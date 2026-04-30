@@ -15,7 +15,7 @@
   --ff-display: 'Playfair Display', serif;
   --ff-body:    'Inter', sans-serif;
 
-  --header-height: 92px;
+  --header-height: 108px;
   --section-py:    clamp(4rem, 8vw, 8rem);
   --section-px:    clamp(1.25rem, 5vw, 4rem);
   --container-max: 1200px;
@@ -89,7 +89,7 @@ header.scrolled {
 
 .nav-logo { display: flex; align-items: center; gap: 0.75rem; }
 .nav-logo img {
-  height: 80px; width: 80px;
+  height: 96px; width: 96px;
   object-fit: contain; border-radius: 0;
 }
 .nav-logo-text { display: none; }
@@ -645,10 +645,12 @@ header.scrolled {
   gap: 2rem; margin-top: 3.5rem;
 }
 
-/* Service photo thumbnails */
+/* Service photo thumbnails — 4:3 box, contain so nothing is cropped */
 .service-photo {
-  width: 100%; aspect-ratio: 16/9;
-  object-fit: cover; border-radius: 10px;
+  width: 100%; aspect-ratio: 4/3;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 10px;
   margin-bottom: 1.5rem;
   display: block;
 }
@@ -671,6 +673,7 @@ header.scrolled {
 .service-full-body h3 {
   font-family: var(--ff-display); font-size: 1.12rem; font-weight: 700;
   color: var(--clr-text-primary); margin-bottom: 0.45rem;
+  min-height: 2.8rem;
 }
 .service-full-body p { font-size: 0.9rem; color: var(--clr-text-secondary); line-height: 1.72; margin-bottom: 0.85rem; flex: 1; }
 .service-tag {
@@ -790,7 +793,7 @@ footer {
   gap: 3rem; margin-bottom: 3rem;
 }
 .footer-logo { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem; }
-.footer-logo img { height: 80px; width: 80px; object-fit: contain; border-radius: 0; }
+.footer-logo img { height: 96px; width: 96px; object-fit: contain; border-radius: 0; }
 .footer-logo-text { display: none; }
 .footer-brand > p {
   font-size: 0.88rem; color: var(--clr-text-tertiary);
@@ -825,6 +828,13 @@ footer {
 .footer-bottom p { font-size: 0.8rem; color: var(--clr-text-tertiary); }
 .footer-bottom a { color: var(--clr-text-tertiary); transition: color 0.2s; }
 .footer-bottom a:hover { color: var(--clr-accent-primary); }
+
+/* Gallery labels always visible on touch/mobile devices */
+@media (hover: none) {
+  .gallery-overlay { opacity: 1; }
+  .gallery-label { transform: translateY(0); opacity: 1; }
+  .gallery-tag    { opacity: 1; transform: translateY(0); }
+}
 
 /* ============================================================
    FLOATING WHATSAPP FAB
@@ -963,11 +973,11 @@ footer {
    ============================================================ */
 @media (max-width: 640px) {
   :root {
-    --header-height: 74px;
+    --header-height: 84px;
     --section-py: clamp(3rem, 7vw, 5rem);
   }
-  .nav-logo img  { height: 64px; width: 64px; }
-  .footer-logo img { height: 68px; width: 68px; }
+  .nav-logo img    { height: 74px; width: 74px; }
+  .footer-logo img { height: 80px; width: 80px; }
 
   .nav-list {
     position: fixed;
