@@ -48,9 +48,9 @@ function initContent() {
     })
   }
 
-  // ── Hero parallax
+  // ── Hero parallax — desktop only (too costly on mobile)
   const heroImg = document.querySelector('.hero-photo-col img')
-  if (heroImg) {
+  if (heroImg && window.innerWidth > 860) {
     const onScroll = () => {
       heroImg.style.transform = `translateY(${window.scrollY * 0.28}px)`
     }
@@ -105,22 +105,24 @@ function initContent() {
     )
   })
 
-  // ── Cinematic sections — parallax scroll on full-bleed images
-  gsap.utils.toArray('.cinematic-single img, .cinematic-pair-item img').forEach(img => {
-    gsap.fromTo(img,
-      { y: '0%' },
-      {
-        y: '-14%',
-        ease: 'none',
-        scrollTrigger: {
-          trigger: img.closest('.cinematic-single, .cinematic-pair-item'),
-          start: 'top bottom',
-          end: 'bottom top',
-          scrub: 0.8,
-        },
-      }
-    )
-  })
+  // ── Cinematic sections — parallax scroll on full-bleed images (desktop only)
+  if (window.innerWidth > 860) {
+    gsap.utils.toArray('.cinematic-single img, .cinematic-pair-item img').forEach(img => {
+      gsap.fromTo(img,
+        { y: '0%' },
+        {
+          y: '-14%',
+          ease: 'none',
+          scrollTrigger: {
+            trigger: img.closest('.cinematic-single, .cinematic-pair-item'),
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: 0.8,
+          },
+        }
+      )
+    })
+  }
 
   // ── Cinematic sections — fade in on scroll
   gsap.utils.toArray('.cinematic-single, .cinematic-pair-item').forEach((el, i) => {
