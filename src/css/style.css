@@ -631,6 +631,90 @@ header.scrolled {
 }
 
 /* ============================================================
+   SPECIALIST SHOWCASE
+   ============================================================ */
+.specialist-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1.25rem, 2.5vw, 2rem);
+  margin-top: clamp(2rem, 4vw, 3.5rem);
+}
+
+.specialist-card {
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.specialist-img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.specialist-card:hover .specialist-img { transform: scale(1.04); }
+
+.specialist-body {
+  padding: clamp(1.25rem, 2.5vw, 1.75rem);
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.specialist-body .service-tag { margin-bottom: 0.75rem; }
+
+.specialist-body h3 {
+  font-family: var(--ff-display);
+  font-size: clamp(1.1rem, 1.8vw, 1.3rem);
+  font-weight: 600;
+  color: var(--clr-text-primary);
+  margin-bottom: 0.75rem;
+}
+
+.specialist-body p {
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: var(--clr-text-secondary);
+  margin-bottom: 1rem;
+  flex: 1;
+}
+
+.specialist-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.4rem 1rem;
+}
+
+.specialist-list li {
+  font-size: 0.8rem;
+  color: var(--clr-text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.specialist-list li::before {
+  content: '✓';
+  color: var(--clr-accent-primary);
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+@media (max-width: 900px) {
+  .specialist-grid { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 580px) {
+  .specialist-grid { grid-template-columns: 1fr; }
+}
+
+/* ============================================================
    SERVICES FULL (renovations page)
    ============================================================ */
 .services-full-grid {
