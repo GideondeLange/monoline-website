@@ -111,7 +111,7 @@ function initContent() {
       gsap.fromTo(img,
         { y: '0%' },
         {
-          y: '-6%',
+          y: '-14%',
           ease: 'none',
           scrollTrigger: {
             trigger: img.closest('.cinematic-single, .cinematic-pair-item'),
