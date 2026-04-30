@@ -15,7 +15,7 @@
   --ff-display: 'Playfair Display', serif;
   --ff-body:    'Inter', sans-serif;
 
-  --header-height: 80px;
+  --header-height: 92px;
   --section-py:    clamp(4rem, 8vw, 8rem);
   --section-px:    clamp(1.25rem, 5vw, 4rem);
   --container-max: 1200px;
@@ -89,7 +89,7 @@ header.scrolled {
 
 .nav-logo { display: flex; align-items: center; gap: 0.75rem; }
 .nav-logo img {
-  height: 62px; width: 62px;
+  height: 80px; width: 80px;
   object-fit: contain; border-radius: 0;
 }
 .nav-logo-text { display: none; }
@@ -474,18 +474,18 @@ header.scrolled {
 .cinematic-single {
   position: relative;
   width: 100%;
-  height: 75vh;
+  height: 88vh;
   overflow: hidden;
-  background: #0a0a0a;
+  background: var(--clr-bg-base);
 }
 .cinematic-single img {
   position: absolute;
   inset: 0;
   width: 100%;
-  height: 120%;
+  height: 145%;
   object-fit: cover;
-  object-position: center 30%;
-  top: -10%;
+  object-position: center 40%;
+  top: -22.5%;
   will-change: transform;
   display: block;
 }
@@ -495,21 +495,21 @@ header.scrolled {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 4px;
-  background: #0a0a0a;
+  background: var(--clr-bg-base);
 }
 .cinematic-pair-item {
   position: relative;
-  height: 65vh;
+  height: 75vh;
   overflow: hidden;
 }
 .cinematic-pair-item img {
   position: absolute;
   inset: 0;
   width: 100%;
-  height: 120%;
+  height: 145%;
   object-fit: cover;
   object-position: center;
-  top: -10%;
+  top: -22.5%;
   will-change: transform;
   display: block;
 }
@@ -642,7 +642,7 @@ header.scrolled {
 .services-full-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 1.5rem; margin-top: 3rem;
+  gap: 2rem; margin-top: 3.5rem;
 }
 
 /* Service photo thumbnails */
@@ -665,11 +665,14 @@ header.scrolled {
   font-size: 1.65rem; flex-shrink: 0; transition: background 0.3s;
 }
 .glass-card:hover .service-full-icon { background: rgba(74, 107, 30, 0.2); }
+.service-full-body {
+  display: flex; flex-direction: column;
+}
 .service-full-body h3 {
   font-family: var(--ff-display); font-size: 1.12rem; font-weight: 700;
   color: var(--clr-text-primary); margin-bottom: 0.45rem;
 }
-.service-full-body p { font-size: 0.9rem; color: var(--clr-text-secondary); line-height: 1.72; margin-bottom: 0.85rem; }
+.service-full-body p { font-size: 0.9rem; color: var(--clr-text-secondary); line-height: 1.72; margin-bottom: 0.85rem; flex: 1; }
 .service-tag {
   display: inline-block; font-size: 0.71rem; font-weight: 600;
   color: var(--clr-accent-primary); background: rgba(74, 107, 30, 0.1);
@@ -787,7 +790,7 @@ footer {
   gap: 3rem; margin-bottom: 3rem;
 }
 .footer-logo { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem; }
-.footer-logo img { height: 58px; width: 58px; object-fit: contain; border-radius: 0; }
+.footer-logo img { height: 80px; width: 80px; object-fit: contain; border-radius: 0; }
 .footer-logo-text { display: none; }
 .footer-brand > p {
   font-size: 0.88rem; color: var(--clr-text-tertiary);
@@ -822,6 +825,32 @@ footer {
 .footer-bottom p { font-size: 0.8rem; color: var(--clr-text-tertiary); }
 .footer-bottom a { color: var(--clr-text-tertiary); transition: color 0.2s; }
 .footer-bottom a:hover { color: var(--clr-accent-primary); }
+
+/* ============================================================
+   FLOATING WHATSAPP FAB
+   ============================================================ */
+.whatsapp-fab {
+  position: fixed;
+  bottom: 2rem; right: 2rem;
+  width: 58px; height: 58px;
+  background: #25D366;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: #fff;
+  z-index: 500;
+  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.45);
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+  animation: waPulse 3s ease-in-out infinite;
+}
+.whatsapp-fab:hover {
+  transform: scale(1.12);
+  box-shadow: 0 8px 32px rgba(37, 211, 102, 0.6);
+}
+.whatsapp-fab svg { width: 28px; height: 28px; }
+@keyframes waPulse {
+  0%, 100% { box-shadow: 0 4px 20px rgba(37,211,102,0.45), 0 0 0 0 rgba(37,211,102,0.35); }
+  60%       { box-shadow: 0 4px 20px rgba(37,211,102,0.45), 0 0 0 12px rgba(37,211,102,0); }
+}
 
 /* ============================================================
    LIGHTBOX
@@ -879,8 +908,8 @@ footer {
    ============================================================ */
 @media (max-width: 1024px) {
   .hero { grid-template-columns: 55% 45%; }
-  .cinematic-single { height: 60vh; }
-  .cinematic-pair-item { height: 55vh; }
+  .cinematic-single { height: 72vh; }
+  .cinematic-pair-item { height: 62vh; }
 }
 
 /* ============================================================
@@ -916,7 +945,7 @@ footer {
   .gallery-masonry { columns: 2; }
 
   .cinematic-pair { grid-template-columns: 1fr 1fr; }
-  .cinematic-pair-item { height: 48vh; }
+  .cinematic-pair-item { height: 52vh; }
 
   .about-layout { grid-template-columns: 1fr; }
   .about-image { aspect-ratio: 16/9; max-width: 100%; }
@@ -934,9 +963,11 @@ footer {
    ============================================================ */
 @media (max-width: 640px) {
   :root {
-    --header-height: 66px;
+    --header-height: 74px;
     --section-py: clamp(3rem, 7vw, 5rem);
   }
+  .nav-logo img  { height: 64px; width: 64px; }
+  .footer-logo img { height: 68px; width: 68px; }
 
   .nav-list {
     position: fixed;
@@ -964,9 +995,9 @@ footer {
 
   .gallery-masonry { columns: 2; }
 
-  .cinematic-single { height: 50vh; }
+  .cinematic-single { height: 56vh; }
   .cinematic-pair { grid-template-columns: 1fr; gap: 4px; }
-  .cinematic-pair-item { height: 55vw; min-height: 260px; }
+  .cinematic-pair-item { height: 62vw; min-height: 280px; }
 
   .services-full-grid { grid-template-columns: 1fr; }
   .service-full-card  { grid-template-columns: 1fr; }
