@@ -1006,15 +1006,15 @@ footer {
 @media (max-width: 860px) {
   .hero {
     grid-template-columns: 1fr;
-    grid-template-rows: auto 62vw;
+    grid-template-rows: auto 78vw;
     min-height: unset;
   }
   .hero-photo-col {
     display: block;
     position: relative;
-    height: 62vw;
-    min-height: 280px;
-    max-height: 520px;
+    height: 78vw;
+    min-height: 340px;
+    max-height: 560px;
   }
   .hero-photo-col img {
     position: absolute; inset: 0;
