@@ -955,10 +955,10 @@ footer {
   .gallery-masonry { columns: 2; }
 
   .cinematic-pair { grid-template-columns: 1fr 1fr; }
-  .cinematic-pair-item { height: 52vh; }
+  .cinematic-pair-item { height: 62vh; }
 
   .about-layout { grid-template-columns: 1fr; }
-  .about-image { aspect-ratio: 16/9; max-width: 100%; }
+  .about-image { aspect-ratio: 4/3; max-width: 100%; }
   .about-highlights { grid-template-columns: repeat(3, 1fr); }
   .about-text { text-align: center; }
   .about-text > .btn-primary { align-self: center; }
@@ -1024,7 +1024,7 @@ footer {
 
   .cinematic-single { height: 56vh; }
   .cinematic-pair { grid-template-columns: 1fr; gap: 4px; }
-  .cinematic-pair-item { height: 62vw; min-height: 280px; }
+  .cinematic-pair-item { height: 72vh; min-height: 360px; }
 
   .services-full-grid { grid-template-columns: 1fr; }
   .service-full-card  { grid-template-columns: 1fr; }
